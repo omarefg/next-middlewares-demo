@@ -1,6 +1,5 @@
 import axios from 'axios'
-
-const API_URL = 'https://api.magicthegathering.io/v1/cards'
+import API_URL from '../../../lib/magicApi'
 
 export default async (req, res) => {
     const { query } = req

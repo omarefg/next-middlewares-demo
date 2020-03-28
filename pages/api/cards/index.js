@@ -1,6 +1,5 @@
 import axios from 'axios'
-
-const API_URL = 'https://api.magicthegathering.io/v1/cards'
+import API_URL from '../../../lib/magicApi'
 
 function getRandomSlice(length) {
     const split = Math.floor(Math.random() * length) + 10
