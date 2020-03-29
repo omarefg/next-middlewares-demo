@@ -91,9 +91,22 @@ const CardDescription = ({ card }) => {
 }
 
 CardDescription.getInitialProps = async ({ query, res }) =>{
-    const { id } = query
-    const { data: card } = await axios.get(`http://localhost:3000/api/cards/${id}`)
-    return { card }
+    try {
+        const { id } = query
+        const { data: card } = await axios.get(`http://localhost:3000/api/cards/${id}`, {
+            headers: {
+                Authorization: 'smellycat'
+            }
+        })
+        return { card }
+    } catch (error) {
+        const { status } = error.response
+        if (status === 401) {
+            res.writeHead(303, {
+                Location: '/shame'
+            }).end()
+        }
+    }
 }
 
 export default CardDescription
